@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Lista de Adopciones";
+    var adoptions = ViewBag.Adoptions as IEnumerable<dynamic>;
+}
+
+<h1>Lista de Adopciones</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mascota</th>
+            <th>Adoptante</th>
+            <th>Estado de Adopción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (adoptions != null && adoptions.Any())
+        {
+            foreach (var adoption in adoptions)
+            {
+                <tr>
+                    <td>@adoption.PetName</td>
+                    <td>@adoption.AdopterName</td>
+                    <td>@adoption.AdoptionStatus</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">No hay adopciones registradas.</td>
+            </tr>
+        }
+    </tbody>
+</table>
