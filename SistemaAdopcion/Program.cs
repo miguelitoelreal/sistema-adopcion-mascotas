@@ -14,7 +14,7 @@ if (!string.IsNullOrEmpty(databaseUrl))
 }
 else
 {
-    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("La cadena de conexión 'DefaultConnection' no está configurada.");
 }
 
 builder.Services.AddControllersWithViews();
