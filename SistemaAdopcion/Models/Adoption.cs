@@ -14,7 +14,6 @@ namespace SistemaAdopcion.Models
         [ForeignKey("PetId")]
         public Pet Pet { get; set; }
 
-        [Required]
         public int AdopterId { get; set; }
 
         [ForeignKey("AdopterId")]

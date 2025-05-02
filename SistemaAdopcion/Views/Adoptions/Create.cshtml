@@ -1,0 +1,35 @@
+@model SistemaAdopcion.Models.Adoption
+
+@{
+    ViewData["Title"] = "Asignar Mascota a Adoptante";
+}
+
+<h1>Asignar Mascota a Adoptante</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="PetId">Mascota</label>
+        <select asp-for="PetId" class="form-control" asp-items="ViewBag.Pets" required>
+            <option value="">Seleccione una mascota</option>
+        </select>
+        <span asp-validation-for="PetId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="AdopterName">Nombre del Adoptante</label>
+        <input type="text" class="form-control" id="AdopterName" name="AdopterName" placeholder="Escriba el nombre del adoptante" required />
+        <span class="text-danger">@ViewData["AdopterError"]</span>
+    </div>
+    <div class="form-group">
+        <label for="AdopterEmail">Correo Electrónico</label>
+        <input type="email" class="form-control" id="AdopterEmail" name="AdopterEmail" placeholder="Escriba el correo electrónico del adoptante" required />
+    </div>
+    <div class="form-group">
+        <label for="AdopterPhone">Teléfono</label>
+        <input type="tel" class="form-control" id="AdopterPhone" name="AdopterPhone" placeholder="Escriba el teléfono del adoptante" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Asignar</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

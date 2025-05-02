@@ -25,9 +25,21 @@ namespace SistemaAdopcion.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Pets.Add(pet);
-                _context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                try
+                {
+                    _context.Pets.Add(pet);
+                    _context.SaveChanges();
+                    TempData["SuccessMessage"] = "La mascota se registró correctamente y está disponible para adopción.";
+                    return RedirectToAction("Index", "Home");
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = "Ocurrió un error al registrar la mascota: " + ex.Message;
+                }
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Por favor, corrija los errores en el formulario.";
             }
             return View(pet);
         }

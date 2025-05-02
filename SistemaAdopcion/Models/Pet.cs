@@ -18,8 +18,10 @@ namespace SistemaAdopcion.Models
         public string Type { get; set; }
 
         [Required]
-        public string AdoptionStatus { get; set; } // Disponible o Adoptada
+        public string AdoptionStatus => IsAdopted ? "Adoptada" : "Disponible";
 
         public Adoption? Adoption { get; set; } // Relación 1:1 con Adoption
+
+        public bool IsAdopted => Adoption != null;
     }
 }
